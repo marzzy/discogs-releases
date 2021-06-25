@@ -1,3 +1,7 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "extends": ["next", "next/core-web-vitals"],
+  "rules": {
+    "semi": ["error", "always", { "omitLastInOneLineBlock": true}],
+    "indent": ["error", 2]
+  }
 }
