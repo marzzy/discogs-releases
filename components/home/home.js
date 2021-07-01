@@ -66,9 +66,9 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   pageInation: {
-    '& .MuiPaginationItem-outlinedSecondary.Mui-selected': {
+    '& .MuiPaginationItem-page.MuiPaginationItem-outlinedSecondary.Mui-selected': {
       background: 'white',
-      color: `${theme.color} !important`
+      color: '#d22749'
     },
     '& .MuiPaginationItem-page.MuiPaginationItem-outlinedSecondary': {
       color: 'white'

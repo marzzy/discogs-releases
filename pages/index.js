@@ -8,8 +8,6 @@ export default function HomePage(props) {
     <div>
       <Head>
         <title>Discogs Releases</title>
-        <meta name="description" content="This is a simple app using Discogs API" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
