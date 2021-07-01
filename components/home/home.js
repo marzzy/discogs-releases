@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, fade } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Pagination from '@material-ui/lab/Pagination';
 import fetch from 'node-fetch';
@@ -9,7 +9,10 @@ import Cards from './components/cards';
 
 //TODO: send it to styles.js
 const useStyles = makeStyles((theme) => ({
-  cardsWrapper: {
+  root: {
+    backgroundImage: "url('/bg.jpg')",
+    backgroundSize: 'cover',
+    height: '100vh',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -17,13 +20,60 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   sideElementsWrapper: {
-    height: '10vh',
+    height: '5vh',
     width: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
-    flexDirection: theme.breakpoints.up('sm') ? 'row': 'column',
+    flexWrap: 'wrap',
+    background: '#3c3c3c69'
   },
+  headerWrapper: {
+    height: '20vh',
+  },
+  header: {
+    fontSize: '3em',
+    display: '-webkit-box',
+    '-webkit-line-clamp': 2,
+    '-webkit-box-orient': 'vertical',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  },
+  textField: {
+    '&:focus': {
+      boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+    '& label.Mui-focused, & label': {
+      color: 'white'
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'lightblue',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+      '& input': {
+        color: 'white'
+      }
+    }
+  },
+  pageInation: {
+    '& .MuiPaginationItem-outlinedSecondary.Mui-selected': {
+      background: 'white',
+      color: `${theme.color} !important`
+    },
+    '& .MuiPaginationItem-page.MuiPaginationItem-outlinedSecondary': {
+      color: 'white'
+    }
+  }
 }));
 
 function Home(props) {
@@ -69,16 +119,23 @@ function Home(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue, currentPage]);
 
+  //TODO: style loading
   return (
-    <div>
-      <section className={classes.cardsWrapper}>
-        <div className={classes.sideElementsWrapper}>
-          <header>
-            {searchValue ? `Search results for ${searchValue}` : 'Releases'}
+    <>
+      <section className={classes.root}>
+        <div className={`${classes.sideElementsWrapper} ${classes.headerWrapper}`}>
+          <header className={classes.header}>
+            {searchValue ? `Search results for "${searchValue}"` : 'Releases'}
           </header>
           <div>
             <form noValidate autoComplete="off">
-              <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={changeSearchVal} />
+              <TextField
+                id="outlined-basic"
+                className={classes.textField}
+                label="search for something"
+                variant="outlined"
+                onChange={changeSearchVal}
+              />
             </form>
           </div>
         </div>
@@ -91,13 +148,17 @@ function Home(props) {
                 <Pagination
                   count={pagination.pages}
                   page={currentPage}
-                  color="primary"
-                  onChange={handlePageChange}/>
+                  color="secondary"
+                  onChange={handlePageChange}
+                  variant="outlined"
+                  size="small"
+                  className={classes.pageInation}
+                />
               </div>
             </>
         }
       </section>
-    </div>
+    </>
   );
 }
 

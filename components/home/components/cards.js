@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '80vh',
+    height: '75vh',
     margin: 0,
     listStyle: 'none',
     padding: 0,
@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-evenly',
   },
   cardWrapper: {
-    width: '33%',
     padding: '8px',
     paddingBottom: 0,
   },
   card: {
     height: 355,
+    width: 300,
     position: 'relative'
   },
   media: {
@@ -36,11 +36,16 @@ const useStyles = makeStyles((theme) => ({
     '-webkit-line-clamp': 2,
     '-webkit-box-orient': 'vertical',
     overflow: 'hidden',
-    textOverflow: 'ellipsis'
+    textOverflow: 'ellipsis',
+    color: 'black'
   },
   cardAction: {
     position: 'absolute',
     bottom: 0
+  },
+  notfound: {
+    padding: '50px 0',
+    fontSize: '1.5em'
   }
 }));
 
@@ -49,7 +54,7 @@ function Cards(props) {
   const classes = useStyles();
 
   if (data.length === 0) {
-    return <p className={classes.root}>sorry we couldnt find any result for this search</p>;
+    return <p className={`${classes.notfound} ${classes.root}`}>sorry we couldnt find any result for this search</p>;
   }
 
   //TODO: bring default image in project

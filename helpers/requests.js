@@ -9,5 +9,5 @@ export function getRequest(relativeUrl) {
   });
 }
 
-export const getInitialRequestUrl = 'database/search?type=release&per_page=6&page=1';
-export const getSearchRequestUrl = (value, page) => `database/search?${value ? `query=${value}&` : ''}type=release&per_page=6&page=${page || 1}`;
+export const getInitialRequestUrl = 'database/search?type=release&per_page=10&page=1';
+export const getSearchRequestUrl = (value, page) => `database/search?${value ? `query=${value}&` : ''}type=release&per_page=10&page=${page || 1}`;
