@@ -8,32 +8,56 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-  cardsWrapper: {
+  root: {
     height: '80vh',
     margin: 0,
     listStyle: 'none',
     padding: 0,
     overflow: 'scroll',
     display: 'flex',
-    maxWidth: '90%',
+    width: '90%',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+  },
+  cardWrapper: {
+    width: '33%',
+    padding: '8px',
+    paddingBottom: 0,
+  },
+  card: {
+    height: 355,
+    position: 'relative'
   },
   media: {
     height: 225,
+  },
+  title : {
+    display: '-webkit-box',
+    '-webkit-line-clamp': 2,
+    '-webkit-box-orient': 'vertical',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  },
+  cardAction: {
+    position: 'absolute',
+    bottom: 0
   }
 }));
 
 function Cards(props) {
   const { data } = props;
   const classes = useStyles();
-  console.log('data', data);
+
+  if (data.length === 0) {
+    return <p className={classes.root}>sorry we couldnt find any result for this search</p>;
+  }
+
   //TODO: bring default image in project
   return (
-    <ul className={classes.cardsWrapper}>
+    <ul className={classes.root}>
       {data.map((item) => (
-        <li key={item.id}>
-          <Card className={classes.root}>
+        <li key={item.id} className={classes.cardWrapper}>
+          <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
                 className={classes.media}
@@ -41,7 +65,7 @@ function Cards(props) {
                 title={item.title}
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
                   {item.title}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -49,7 +73,7 @@ function Cards(props) {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions>
+            <CardActions className={classes.cardAction}>
               <Link target="_blank" rel="noopener" variant="body2" href={`https://www.discogs.com/${item.uri}`}>
               Visit
               </Link>

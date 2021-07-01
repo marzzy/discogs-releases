@@ -1,6 +1,10 @@
+import { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Pagination from '@material-ui/lab/Pagination';
+import fetch from 'node-fetch';
+import { getRequest, getSearchRequestUrl } from 'helpers/requests';
+import { usePrevious } from 'helpers/utils';
 import Cards from './components/cards';
 
 //TODO: send it to styles.js
@@ -23,38 +27,75 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Home(props) {
-  {console.log(props)}
   const classes = useStyles();
-  const { pagination, results } = props;
+  const { data } = props;
+  const [loading, setLoading] = useState(false);
+  const [searchValue , setSearchValue] = useState('');
+  const [searchResponse, setSearchResponse] = useState(data);
+  const { pagination, results } = searchResponse;
+  const [currentPage, setCurrentPage] = useState(1);
+  const prevPage = usePrevious(currentPage);
+  const isFirstRender = useRef(true);
   //TODO: send it to homeManager.js
   function handlePageChange(event, value) {
-    //TODO: take action when page change
-    console.log('page changed: ', event, value);
+    setCurrentPage(value);
+    setLoading(true);
   }
 
-  function handleSearch (event) {
-    //TODO: take action when search
-    console.log('search item: ',event.target.value);
+  function changeSearchVal(event) {
+    setSearchValue(event.target.value);
+    setLoading(true);
   };
+
+  useEffect(function searchOnValueChange() {
+    if(isFirstRender.current) {
+      isFirstRender.current = false;
+    } else {
+      const isPageChange = prevPage !== currentPage;
+
+      const delayDebounceFn = setTimeout(async function fetchData() {
+        const res = await fetch(getRequest(getSearchRequestUrl(searchValue, isPageChange ? currentPage : 1)));
+        const data = await res.json();
+
+        if (!isPageChange) {
+          setCurrentPage(1);
+        }
+        setSearchResponse(data);
+        setLoading(false);
+      }, isPageChange ? 0 : 1500);
+
+      return () => clearTimeout(delayDebounceFn);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue, currentPage]);
 
   return (
     <div>
       <section className={classes.cardsWrapper}>
         <div className={classes.sideElementsWrapper}>
-          <header >
-            releases / search results on releasess
+          <header>
+            {searchValue ? `Search results for ${searchValue}` : 'Releases'}
           </header>
           <div>
             <form noValidate autoComplete="off">
-              <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={handleSearch} />
+              <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={changeSearchVal} />
             </form>
           </div>
         </div>
 
-        <Cards data={results}/>
-        <div className={classes.sideElementsWrapper}>
-          <Pagination count={pagination.pages} color="primary" onChange={handlePageChange}/>
-        </div>
+        {
+          loading ? <p>loading...</p> :
+            <>
+              <Cards data={results}/>
+              <div className={classes.sideElementsWrapper}>
+                <Pagination
+                  count={pagination.pages}
+                  page={currentPage}
+                  color="primary"
+                  onChange={handlePageChange}/>
+              </div>
+            </>
+        }
       </section>
     </div>
   );

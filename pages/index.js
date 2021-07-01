@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import fetch from 'node-fetch';
-import { getRequest } from 'helpers/requests';
+import { getRequest, getInitialRequestUrl } from 'helpers/requests';
 import Home from 'components/home';
 
 export default function HomePage(props) {
@@ -13,7 +13,7 @@ export default function HomePage(props) {
       </Head>
 
       <main>
-        <Home {...props} />
+        <Home data={props} />
       </main>
 
     </div>
@@ -21,7 +21,7 @@ export default function HomePage(props) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(getRequest('database/search?query=moderat&type=release&per_page=3&page=1'));
+  const res = await fetch(getRequest(getInitialRequestUrl));
   const data = await res.json();
 
   if (!data) {
