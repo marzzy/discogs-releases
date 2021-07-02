@@ -1,6 +1,5 @@
 import { makeStyles, fade } from '@material-ui/core/styles';
 
-//TODO: use material ui default theme provider
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundImage: "url('/bg.jpg')",

@@ -13,7 +13,11 @@ function Cards(props) {
   const classes = useStyles();
 
   if (data.length === 0) {
-    return <p className={`${classes.notfound} ${classes.root}`}>sorry we couldnt find any result for this search</p>;
+    return (
+      <p className={`${classes.notfound} ${classes.root}`}>
+        sorry we couldnt find any result for this search
+      </p>
+    );
   }
 
   return (
@@ -31,16 +35,30 @@ function Cards(props) {
                 blurDataURL={item.thumb}
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.title}
+                >
                   {item.title}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
                   {item.catno}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions className={classes.cardAction}>
-              <Link target="_blank" rel="noopener" variant="body2" href={`https://www.discogs.com/${item.uri}`}>
+              <Link
+                target="_blank"
+                rel="noopener"
+                variant="body2"
+                href={`https://www.discogs.com/${item.uri}`}
+              >
                 Visit
               </Link>
             </CardActions>
