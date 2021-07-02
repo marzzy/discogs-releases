@@ -1,5 +1,7 @@
 
+import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
+import theme from 'theme';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -43,6 +45,12 @@ const useStyles = makeStyles(() => ({
     '& > div': {
       width: '100%'
     }
+  },
+  chip: {
+    '& > span': {
+      color: 'gray',
+    },
+    marginRight: theme.spacing(1)
   }
 }));
 
