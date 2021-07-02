@@ -12,7 +12,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head >
-          <meta name="description" content="This is a simple app using Discogs API" />
+          <meta name="description" content="This is a music releases App" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>

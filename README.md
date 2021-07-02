@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Music Releases
+
+This is an Music Release App using [Discogs Apis](https://www.discogs.com/developers), [NextJs](https://nextjs.org/), and [React](https://reactjs.org/).
 
 ## Getting Started
 
-First, run the development server:
+First, Discogs Apis needed a developer token and for the sake of security I put it in *.env.local* and add it as a local variable on [vercel](https://vercel.com/) to can deploy it,
+So If you are about to run this app in your system you need to create a *.env.local* file and put your Discogs token there, like bellow(put your token instead of *abcdefg*):
+
+**.env.local**
+
+```
+NEXT_PUBLIC_DISCOGS_SECRET_TOKEN=abcdefg
+```
+
+Then you can run the app by:
 
 ```bash
+npm i
 npm run dev
 # or
+yarn
 yarn dev
 ```
 
+**notice**: The App need *Node.js 12.0 or later*
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For deployment I use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) so you can check out the result [here](https://music-releases.marzzy-codes.com/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Options
+
+The App supports:
+
+- Responsive
+- Accessible: In this App, I try to use the correct HTML tags and using [Material-ui](https://material-ui.com/) component which leads to getting a good mark on accessibility tests.
+- Paginated
+- Progressively enhanced: As we mentioned below this App use server-side rendering so ........
+- Deployed on [vercel](https://vercel.com/)
+- Perform well over slow internet connections: Please check the relevant section in the resulting test below.
+- Work offline: It uses server-side rendering solutions so it sends the initial request by the server. This approach makes the App faster and makes it possible to cache. Plus the initial request gets an update by the server every 5 minutes(which can be changed in pages/index.js line 25) so the data is always accurate and update.
+
+In order to test these features I use the [Lighthouse Chrome](https://developers.google.com/web/tools/lighthouse) and set the result below, you also can test it by yourself on every single system that you want.
+
+//TODO: Progressively enhanced
+//TODO: lighthouse pics
+//TODO: change deployed address on github repo

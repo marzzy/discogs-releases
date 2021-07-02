@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Discogs Releases</title>
+        <title>Music Releases</title>
         <meta name="theme-color" content={theme.palette.primary.main} />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
