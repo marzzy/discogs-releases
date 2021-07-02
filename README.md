@@ -38,13 +38,9 @@ The App supports:
 - Responsive
 - Accessible: In this App, I try to use the correct HTML tags and using [Material-ui](https://material-ui.com/) component which leads to getting a good mark on accessibility tests.
 - Paginated
-- Progressively enhanced: As we mentioned below this App use server-side rendering so ........
+- Progressively enhanced
 - Deployed on [vercel](https://vercel.com/)
-- Perform well over slow internet connections: Please check the relevant section in the resulting test below.
+- Perform well over slow internet connections: Please check the relevant section in the resulting test [here](https://music-releases.marzzy-codes.com/LighthouseReport.html).
 - Work offline: It uses server-side rendering solutions so it sends the initial request by the server. This approach makes the App faster and makes it possible to cache. Plus the initial request gets an update by the server every 5 minutes(which can be changed in pages/index.js line 25) so the data is always accurate and update.
 
-In order to test these features I use the [Lighthouse Chrome](https://developers.google.com/web/tools/lighthouse) and set the result below, you also can test it by yourself on every single system that you want.
-
-//TODO: Progressively enhanced
-//TODO: lighthouse pics
-//TODO: change deployed address on github repo
+In order to test these features I use the [Lighthouse Chrome](https://developers.google.com/web/tools/lighthouse) and put the result [here](https://music-releases.marzzy-codes.com/LighthouseReport.html)

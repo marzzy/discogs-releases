@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     margin: 0,
     listStyle: 'none',
     padding: 0,
-    overflow: 'scroll',
+    overflowY: 'scroll',
     display: 'flex',
     width: '100%',
     flexWrap: 'wrap',
