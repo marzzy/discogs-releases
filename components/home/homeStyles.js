@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   sideElementsWrapper: {
-    height: '5vh',
+    height: '15vh',
     width: '100%',
     display: 'flex',
     alignItems: 'center',

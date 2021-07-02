@@ -41,7 +41,7 @@ function Cards(props) {
             </CardActionArea>
             <CardActions className={classes.cardAction}>
               <Link target="_blank" rel="noopener" variant="body2" href={`https://www.discogs.com/${item.uri}`}>
-              Visit
+                Visit
               </Link>
             </CardActions>
           </Card>
