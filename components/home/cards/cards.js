@@ -31,7 +31,6 @@ function Cards(props) {
               variant="body2"
               href={`https://www.discogs.com/${item.uri}`}
             >
-              {console.log('item',item)}
               <CardActionArea className={classes.mediaWrapper}>
                 <Image
                   src={item.cover_image || defaultPicture}

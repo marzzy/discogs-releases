@@ -1,5 +1,3 @@
-
-import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import theme from 'theme';
 
@@ -11,7 +9,7 @@ const useStyles = makeStyles(() => ({
     padding: 0,
     overflow: 'scroll',
     display: 'flex',
-    width: '90%',
+    width: '100%',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
   },

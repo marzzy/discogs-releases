@@ -1,9 +1,9 @@
-import TextField from '@material-ui/core/TextField';
-import Pagination from '@material-ui/lab/Pagination';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Cards from './components/cards';
+import Cards from './cards/cards';
 import useHomeManager from './homeManages';
 import useStyles from './homeStyles';
+import Header from './header';
+import Footer from './footer';
 
 function Home(props) {
   const classes = useStyles();
@@ -23,44 +23,29 @@ function Home(props) {
 
 
   return (
-    <>
-      <section className={classes.root}>
-        <div className={`${classes.sideElementsWrapper} ${classes.headerWrapper}`}>
-          <header className={classes.header}>
-            {searchValue ? `Search results for "${searchValue}"` : 'Releases'}
-          </header>
-          <div>
-            <form noValidate autoComplete="off">
-              <TextField
-                id="outlined-basic"
-                className={classes.textField}
-                label="search for something"
-                variant="outlined"
-                onChange={handleChangeSearchVal}
-              />
-            </form>
-          </div>
-        </div>
+    <div className={classes.root}>
+      <Header
+        classes={classes}
+        searchValue={searchValue}
+        handleChangeSearchVal={handleChangeSearchVal}
+      />
 
-        {
-          loading ? <CircularProgress /> :
-            <>
-              <Cards data={results}/>
-              <div className={classes.sideElementsWrapper}>
-                <Pagination
-                  count={pagination.pages}
-                  page={currentPage}
-                  color="secondary"
-                  onChange={handlePageChange}
-                  variant="outlined"
-                  size="small"
-                  className={classes.pageInation}
-                />
-              </div>
-            </>
-        }
-      </section>
-    </>
+      {loading ? (
+        <div className={classes.loading}>
+          <CircularProgress />
+        </div>
+      ) : (
+        <Cards data={results}/>
+      )
+      }
+
+      <Footer classes={classes}
+        pagination={pagination}
+        currentPage={currentPage}
+        handlePageChange={handlePageChange}
+        loading={loading}
+      />
+    </div>
   );
 }
 

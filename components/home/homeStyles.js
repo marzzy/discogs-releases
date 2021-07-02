@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
   headerWrapper: {
     height: '20vh',
   },
+  loading: {
+    height: '65vh',
+    display: 'flex',
+    alignItems: 'center'
+  },
   header: {
     fontSize: '3em',
     display: '-webkit-box',
