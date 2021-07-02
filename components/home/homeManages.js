@@ -38,7 +38,7 @@ function useHomeManager(props) {
         }
         setSearchResponse(data);
         setLoading(false);
-      }, isPageChange ? 0 : 1500);
+      }, isPageChange ? 0 : 500);
 
       return () => clearTimeout(delayDebounceFn);
     }

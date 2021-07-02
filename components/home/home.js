@@ -1,5 +1,6 @@
 import TextField from '@material-ui/core/TextField';
 import Pagination from '@material-ui/lab/Pagination';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Cards from './components/cards';
 import useHomeManager from './homeManages';
 import useStyles from './homeStyles';
@@ -21,7 +22,6 @@ function Home(props) {
   } = useHomeManager(props);
 
 
-  //TODO: style loading
   return (
     <>
       <section className={classes.root}>
@@ -43,7 +43,7 @@ function Home(props) {
         </div>
 
         {
-          loading ? <p>loading...</p> :
+          loading ? <CircularProgress /> :
             <>
               <Cards data={results}/>
               <div className={classes.sideElementsWrapper}>
